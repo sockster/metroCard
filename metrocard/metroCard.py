@@ -1,5 +1,5 @@
-"""
 
+"""
 A Pay-Per-Ride MetroCard costs
 
 
@@ -59,12 +59,13 @@ card_value_final = int(value)		amount to add - for 1 under and 1 over preferred 
 	
 	
 		
-= = = = = = = = = = = = = = = = = = END OF OUTLINE
+= = = = = = = = = =		END OF OUTLINE
 """
 
 
 
-
+#	> > > > > > 		SECTION 1
+#							setting the parameters to customer"""
 
 def orig_card():
 	if (new_card == "Y") or (new_card == "y"):
@@ -72,8 +73,9 @@ def orig_card():
 		addl_value()
 	elif (new_card == "N") or (new_card == "n"):
 		card_value = float(raw_input("What is the value on your card now?\n"))
-		print "Right now your card has",
-		print int(card_value / 2.75),
+		rides = int(card_value / 2.75)
+		print "Right now your card has %d rides remaining" % rides
+#		print int(card_value / 2.75),
 		print "rides remaining"
 		addl_value()
 	else:
@@ -89,10 +91,63 @@ def addl_value():
 		print "The value you add to your MetroCard must be between $5.50 and $80.00."
 		addl_value
 	else:
-		print """Ok, the amount we'll be adding will be approximately $%0.2f in order 
-to reach an even number of rides""" % cust_pref
+		print "Ok, the amount we'll be adding will be approximately $%0.2f in order to reach an even number of rides" % cust_pref
+	
+#	> > > > > > 		SECTION 1 - END
+
+
+#	> > > > > > 		SECTION 2
+#							the math
+
+# vars:
+#		card_value  --> current
+#		cust_pref   --> being added
+
+# sample vars:
+# card_value = .80
+# cust_pref = 7.75
+
+
+
+
+
+
+
+
+"""
+CAN THIS BE DELETED?
+print "%0.2f" % pref_plus_bonus
+print "%0.2f" % total_actual
+
+import math
+print total_actual % 2.75 == 0
+print math.floor(pref_plus_bonus / 2.75)
+print math.ceil(pref_plus_bonus / 2.75)
+"""
+
+import math
+def addl_value_choices():
+	pref_plus_bonus = cust_pref + (cust_pref * .11)
+	total_actual = pref_plus_bonus + card_value
+	if total_actual % 2.75 == 0:
+		print "Go ahead - the final total will give you exactly %d" % (total_actual / 2.75),
+		print "rides"
+	else:
+		lower = total_actual + math.floor(total_actual / 2.75)
+		upper = total_actual + math.ceil(total_actual / 2.75)
+		
+		print "You can either add %0.2f" % lower
+		print "for %d rides" % math.floor(total_actual / 2.75)
+		print "or you can add %0.2f" % upper
+		print "for %d rides" % math.ceil(total_actual / 2.75)
+		
 	
 
+
+
+
+
+#	> > > > > > 		SECTION 2 - END
 
 
 if __name__ == "__main__":
@@ -100,3 +155,5 @@ if __name__ == "__main__":
 
 	orig_card()
 	
+	addl_value_choices()
+
