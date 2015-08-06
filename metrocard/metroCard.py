@@ -67,31 +67,40 @@ card_value_final = int(value)		amount to add - for 1 under and 1 over preferred 
 #	> > > > > > 		SECTION 1
 #							setting the parameters to customer"""
 
+#				CURRENT CARD
 def orig_card():
+	new_card = raw_input("Is this a new card?\n")
+
 	if (new_card == "Y") or (new_card == "y"):
 		card_value = 0
-		addl_value()
+		mo_money()
 	elif (new_card == "N") or (new_card == "n"):
 		card_value = float(raw_input("What is the value on your card now?\n"))
 		rides = int(card_value / 2.75)
 		print "Right now your card has %d rides remaining" % rides
 #		print int(card_value / 2.75),
-		print "rides remaining"
-		addl_value()
+		mo_money()
 	else:
 		print "Please enter \"Y\" or \"N\" \n"
 
 
-def addl_value():
+
+#				MONEY TO ADD
+def mo_money():
 	cust_pref = float(raw_input("How much do you want to add to your card?\n"))	# cust_pref now a decimal (tested ok)
+	addl_value()
+	
+def addl_value():
 	if (cust_pref * 100) % 5 != 0:
 		print "Values must be in 5-cent increments"
 		addl_value()
 	elif cust_pref < 5.50 or cust_pref > 80.00:
 		print "The value you add to your MetroCard must be between $5.50 and $80.00."
-		addl_value
+		addl_value()
 	else:
-		print "Ok, the amount we'll be adding will be approximately $%0.2f in order to reach an even number of rides" % cust_pref
+		print """Ok, I'll suggest one amount lower and one amount higher than $%0.2f, 
+to give you 2 options in order to reach an even number of rides""" % cust_pref
+		addl_value_choices()
 	
 #	> > > > > > 		SECTION 1 - END
 
@@ -127,6 +136,8 @@ print math.ceil(pref_plus_bonus / 2.75)
 
 import math
 def addl_value_choices():
+	print cust_pref
+"""	
 	pref_plus_bonus = cust_pref + (cust_pref * .11)
 	total_actual = pref_plus_bonus + card_value
 	if total_actual % 2.75 == 0:
@@ -140,7 +151,7 @@ def addl_value_choices():
 		print "for %d rides" % math.floor(total_actual / 2.75)
 		print "or you can add %0.2f" % upper
 		print "for %d rides" % math.ceil(total_actual / 2.75)
-		
+"""
 	
 
 
@@ -151,9 +162,6 @@ def addl_value_choices():
 
 
 if __name__ == "__main__":
-	new_card = raw_input("Is this a new card?\n")
-
-	orig_card()
-	
-	addl_value_choices()
+	orig_card()	
+#	addl_value_choices()
 
