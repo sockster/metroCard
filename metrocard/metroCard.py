@@ -73,23 +73,35 @@ def orig_card():
 
 	if (new_card == "Y") or (new_card == "y"):
 		card_value = 0
-		mo_money()
 	elif (new_card == "N") or (new_card == "n"):
 		card_value = float(raw_input("What is the value on your card now?\n"))
 		rides = int(card_value / 2.75)
 		print "Right now your card has %d rides remaining" % rides
 #		print int(card_value / 2.75),
-		mo_money()
 	else:
 		print "Please enter \"Y\" or \"N\" \n"
+		orig_card()
 
 
 
 #				MONEY TO ADD
 def mo_money():
 	cust_pref = float(raw_input("How much do you want to add to your card?\n"))	# cust_pref now a decimal (tested ok)
-	addl_value()
 	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def addl_value():
 	if (cust_pref * 100) % 5 != 0:
 		print "Values must be in 5-cent increments"
@@ -100,7 +112,7 @@ def addl_value():
 	else:
 		print """Ok, I'll suggest one amount lower and one amount higher than $%0.2f, 
 to give you 2 options in order to reach an even number of rides""" % cust_pref
-		addl_value_choices()
+#		addl_value_choices()
 	
 #	> > > > > > 		SECTION 1 - END
 
@@ -137,7 +149,6 @@ print math.ceil(pref_plus_bonus / 2.75)
 import math
 def addl_value_choices():
 	print cust_pref
-"""	
 	pref_plus_bonus = cust_pref + (cust_pref * .11)
 	total_actual = pref_plus_bonus + card_value
 	if total_actual % 2.75 == 0:
@@ -151,7 +162,6 @@ def addl_value_choices():
 		print "for %d rides" % math.floor(total_actual / 2.75)
 		print "or you can add %0.2f" % upper
 		print "for %d rides" % math.ceil(total_actual / 2.75)
-"""
 	
 
 
@@ -162,6 +172,10 @@ def addl_value_choices():
 
 
 if __name__ == "__main__":
-	orig_card()	
-#	addl_value_choices()
+	orig_card()
+	cust_pref = float(raw_input("How much do you want to add to your card?\n"))	# cust_pref now a decimal (tested ok)
+
+#	mo_money()
+	addl_value()
+	addl_value_choices()
 
