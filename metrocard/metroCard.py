@@ -67,7 +67,13 @@ card_value_final = int(value)		amount to add - for 1 under and 1 over preferred 
 #	> > > > > > 		SECTION 1
 #							setting the parameters to customer"""
 
+
+
 #				CURRENT CARD
+
+new_card = 0
+card_value = 0
+
 def orig_card():
 	new_card = raw_input("Is this a new card?\n")
 
@@ -125,26 +131,26 @@ to give you 2 options in order to reach an even number of rides""" % cust_pref
 #		cust_pref   --> being added
 
 # sample vars:
-# card_value = .80
-# cust_pref = 7.75
+
+# card_value = .80			z
+# cust_pref = 7.75      	x
+# pref_plus_bonus = 8.60	y
+# total_actual = 9.40		y + z = t
+
+#	if t % 2.75 != 0:
+#		then add .05 to x, add 11% to that, check if divisible by 2.75, rinse repeat until % == 0
+#		while t % 2.75 != 0:
+#			x = x + .05
+#			(y + z) % 2.75
+# IS THIS EFFICIENT ON ANY LEVEL?
 
 
 
 
 
-
-
-
-"""
-CAN THIS BE DELETED?
-print "%0.2f" % pref_plus_bonus
-print "%0.2f" % total_actual
-
-import math
-print total_actual % 2.75 == 0
-print math.floor(pref_plus_bonus / 2.75)
-print math.ceil(pref_plus_bonus / 2.75)
-"""
+# math - floor & ceil:
+# CLOSEST number BELOW num or expression divided by divisor
+# math.floor(a-number-or-expression)  -  in this case, looking for amt to add divided by 2.75
 
 import math
 def addl_value_choices():
@@ -155,6 +161,7 @@ def addl_value_choices():
 		print "Go ahead - the final total will give you exactly %d" % (total_actual / 2.75),
 		print "rides"
 	else:
+#				
 		lower = total_actual + math.floor(total_actual / 2.75)
 		upper = total_actual + math.ceil(total_actual / 2.75)
 		
@@ -174,6 +181,9 @@ def addl_value_choices():
 if __name__ == "__main__":
 	orig_card()
 	cust_pref = float(raw_input("How much do you want to add to your card?\n"))	# cust_pref now a decimal (tested ok)
+#	print new_card
+	
+#	new_or_no = new_card
 
 #	mo_money()
 	addl_value()
