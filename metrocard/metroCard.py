@@ -135,7 +135,7 @@ to give you 2 options in order to reach an even number of rides""" % cust_pref
 # card_value = .80			z
 # cust_pref = 7.75      	x
 # pref_plus_bonus = 8.60	y
-# total_actual = 9.40		y + z = t
+# total_actual = 9.40		t = y + z
 
 #	if t % 2.75 != 0:
 #		then add .05 to x, add 11% to that, check if divisible by 2.75, rinse repeat until % == 0
@@ -146,6 +146,42 @@ to give you 2 options in order to reach an even number of rides""" % cust_pref
 
 
 
+z = .80					# orig card value
+x = 7.75				# amt adding
+y = x + (x * .11)		# amt adding + bonus
+t = y + z				# total value of card
+
+print "let's start!"
+print "%0.2f - original value of card" % z
+print "%0.2f - amt adding" % x
+print "%0.2f - amt adding plus bonus (11 pct)" % y
+print "%0.2f - final total of value of card" % t
+
+#		BELOW: round up to 2.75, do math things, else, round down to divisible by 2.75 
+#	if z < 2.75:
+
+#		while t % 2.75 != 0:
+#			a = (2.75 - z)
+#			t = a + z + y
+#			t % 2.75 == 0			if false, try again (please)
+#			if false, somehow get this sucker to add .05 to x and try again
+#				--maybe put if t % 2.75 == 0, then give amount of rides, else, 
+#				do this dance, adding .05 on line after "while" statement
+
+#	else:
+#		while t % 2.75 != 0
+#			b = (z % 2.75)
+#			t = b + z + y
+#			t % 2.75 == 0			if false, try again (pretty please)
+
+
+
+
+
+
+
+
+"""			COMMENTED FOR TESTING FOR MATH
 
 
 # math - floor & ceil:
@@ -157,12 +193,14 @@ def addl_value_choices():
 	print cust_pref
 	pref_plus_bonus = cust_pref + (cust_pref * .11)
 	total_actual = pref_plus_bonus + card_value
+	y = pref_plus_bonus
+	t = y + z
 	if total_actual % 2.75 == 0:
 		print "Go ahead - the final total will give you exactly %d" % (total_actual / 2.75),
 		print "rides"
 	else:
 #				
-		lower = total_actual + math.floor(total_actual / 2.75)
+		lower = total_actual - math.floor(total_actual / 2.75)
 		upper = total_actual + math.ceil(total_actual / 2.75)
 		
 		print "You can either add %0.2f" % lower
@@ -187,5 +225,12 @@ if __name__ == "__main__":
 
 #	mo_money()
 	addl_value()
+	z = card_value
+	x = cust_pref
+
 	addl_value_choices()
+
+END OF COMMENTING FOR TESTING		"""
+
+print "End of File"
 
