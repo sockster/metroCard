@@ -145,11 +145,14 @@ to give you 2 options in order to reach an even number of rides""" % cust_pref
 # IS THIS EFFICIENT ON ANY LEVEL?
 
 
-
+"""
 z = .80					# orig card value
 x = 7.75				# amt adding
 y = x + (x * .11)		# amt adding + bonus
 t = y + z				# total value of card
+
+
+
 
 print "let's start!"
 print "%0.2f - original value of card" % z
@@ -168,7 +171,7 @@ print "%0.2f - final total of value of card" % t
 #				--maybe put if t % 2.75 == 0, then give amount of rides, else, 
 #				do this dance, adding .05 on line after "while" statement
 
-#	else:
+#	else:	# if orig card amt is > 2.75
 #		while t % 2.75 != 0
 #			b = (z % 2.75)
 #			t = b + z + y
@@ -180,8 +183,7 @@ print "%0.2f - final total of value of card" % t
 
 
 
-
-"""			COMMENTED FOR TESTING FOR MATH
+			COMMENTED FOR TESTING FOR MATH """
 
 
 # math - floor & ceil:
@@ -230,7 +232,7 @@ if __name__ == "__main__":
 
 	addl_value_choices()
 
-END OF COMMENTING FOR TESTING		"""
+#  END OF COMMENTING FOR TESTING		
 
 print "End of File"
 
