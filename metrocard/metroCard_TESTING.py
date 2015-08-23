@@ -13,7 +13,7 @@ orig_amt = float(orig)	# $ on card now - amt only
 add_amt = float(addl)	# preferred $ to add - amt only
 bonus = add_amt + (add_amt * .11)	# add'l amt including bonus
 total = orig_amt + bonus	# orig amt + (add'l amt) + bonus
-rides = total / single_fare
+rides = total / single_fare	#also use for start number in figuring best amt t/b added
 remainder = total % single_fare
 rides_remainder = int(100 * remainder)
 new_rides_remainder = int(100 * (add_amt % single_fare))
@@ -27,22 +27,44 @@ new_rides_remainder = int(100 * (add_amt % single_fare))
 def metrocard():
 	print orig
 	print addl
-	print "your total will be %.2f" % total
+	print "your total - including original amount and 11 percent bonus will be %.2f" % total
 	print "you will have %i rides" % rides
 	if rides_remainder == 0:
 		print "this amount will leave you with $0 on your metrocard!"		# END OF SECTION 1
 	else:
-		print "but you will have %.2f remaining on your card - go to metroplus()" % remainder
+		print "but you will have $%.2f remaining on your card - go to metroplus()" % remainder
 		metroplus()
 
 import math
 def metroplus():
 	add_amt = float(addl)
-	while (remainder != 0) and (add_amt <= (rides + 2.75)):
+	while (remainder != 0) and (add_amt < 100):
 		print "New amount to add is %.2f" % add_amt
 		print "Remainder is ", remainder
+		print "Print add_amt:", add_amt
 		add_amt = add_amt + .05
+
+		bonus = add_amt + (add_amt * .11)	# add'l amt including bonus
+		total = orig_amt + bonus	# orig amt + (add'l amt) + bonus
+#		remainder = total % single_fare
+		print "Print bonus:", bonus
+		print "Print total:", total
+#		print "Remainder is ", remainder
 	print "We're done here!"	
+
+
+#	START ABOVE
+#		Q: Why does remainder remain the same throughout?
+#			w/o commented lines 49 & 52, Py insists remainder called before assigned
+
+
+
+
+
+
+
+"""
+
 
 #	START HERE !!!
 # if ORIG_AMT <= 2.75:
@@ -53,25 +75,12 @@ def metroplus():
 
 		
 		
-#	> > > > > > 		THE MATH
-
-			
-	
-# FORMULA - where:
-# x = amt to add
-# y = amt on card
-# 	(x + (x * .11) + y) / 2.75 = 0
-
-
-#	> > > > > > 		END OF THE MATH
-
 
 
 
 #			FROM ORIGINAL FILE (seems to work for getting floor & ceiling)
 #			COMMENTED FOR TESTING FOR MATH
 
-"""
 # math - floor & ceil:
 # CLOSEST number BELOW num or expression divided by divisor
 # math.floor(a-number-or-expression)  -  in this case, looking for amt to add divided by 2.75
@@ -101,8 +110,34 @@ def addl_value_choices():
 """
 
 
+# var_statmts - THE NEW SHIT ... kickin' it old school (sep raw_input stmt from ans)
 
+#	var_statements: define the vars and do the initial %age math
+def var_statemts():
+	print "on card now"
+	x = float(raw_input())			# on card now amt
+	print "to add to card"
+	y = float(raw_input())			# adding amt
+	y2 = y + round((y * .11),2)		# adding amt + 11% bonus
+	print "Print y2:", y2
+	print ("{:.2f}".format(y2))
+	z = x + y2
+	print "Print z:", z
+	print ("{:.2f}".format(y2))
 
+""" 08.23.15	Done; Next; Waiting:
+	D - Ask how much on card - save as var
+	D - Ask how much to add - save as var
+	D - Add 11% bonus to add amt - save as var
+	D - Add to orig amt on card - save as var
+	D - Divide by fare ($2.75)
+	D - Return number of rides
+	D - Return amt left on card
+	D - If amt != 0, go to metroplus() for...
+	N - If amt < 2.75
+"""	
+	
+#var_statemts()
 
 
 
