@@ -57,6 +57,7 @@ def metroplus():
 #		Q: Why does remainder remain the same throughout?
 #			w/o commented lines 49 & 52, Py insists remainder called before assigned
 
+#################### BEFORE WORKING, PUSH TO GITHUB - NO INTERNET CONNECT ON 08.23.15
 
 
 
