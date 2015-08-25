@@ -19,33 +19,33 @@ def testing():
 	print ("{:.2f}".format(z))
 #	print("{:.2f}".format(3.1415926))		#from string formatting ckbk
 	
-"""
 
 def testing():
 	from decimal import Decimal, getcontext
 	getcontext().prec = 2
 
 	x = Decimal(raw_input("on card now\n"))			# to be fixed amt
-	y = float(raw_input("to add to card\n"))		# to be var, added to by .05 until div by 2.75
+	y = Decimal(raw_input("to add to card\n"))		# to be var, added to by .05 until div by 2.75
 	print "Decimal(x)", Decimal(x)
 
 	# convert float to 2-decimal #
-	print 'x = "{:.2f}".format(x)'
 	x = "{:.2f}".format(x)
 	y = "{:.2f}".format(y)
-	z = 0
+	print "Print x", x
+	print "Print y", y
+	print (x + y)
+	z = (x + y)
+	print z
+#	z = "{:.2f}".format(z)
+	print z
 	
-	print "x"
-	print x
-	print y
-	
+
 
 
 
 
 
 	
-"""	
 #	while z <= 10:
 	if (y + (y * .11) + x) / 2.75 != 0:
 #	if "{:.2f}".format((y + (y * .11) + x) / 2.75) != 0:
@@ -64,7 +64,23 @@ def testing():
 #	0.00 as z
 """
 
+#	var_statements: define the vars and do the initial %age math
+def var_statemts():
+	print "on card now"
+	x = float(raw_input())			# on card now amt
+	print "to add to card"
+	y = float(raw_input())			# adding amt
+	y2 = y + round((y * .11),2)		# adding amt + 11% bonus
+	print "Print y2:", y2
+	print ("{:.2f}".format(y2))
+	z = x + y2
+	print "Print z:", z
+	print ("{:.2f}".format(y2))
+
+	
+var_statemts()
 
 
-testing()
+
+#testing()
 
