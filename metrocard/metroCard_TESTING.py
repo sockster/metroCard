@@ -24,34 +24,61 @@ new_rides_remainder = int(100 * (add_amt % single_fare))
 #	> > > > > > 		SECTION 2	"else" - if remainder $$$, go to metroplus to figure out even amts to add for 0 remainder
 
 
+
+
+#		DEF METROCARD() WORKS - WITH REMAINDER OR WITH EVEN # RIDES (wooHOOO!!!)
 def metrocard():
 	print orig
 	print addl
 	print "your total - including original amount and 11 percent bonus will be %.2f" % total
 	print "you will have %i rides" % rides
+#	remainder = total % single_fare
+
 	if rides_remainder == 0:
 		print "this amount will leave you with $0 on your metrocard!"		# END OF SECTION 1
 	else:
 		print "but you will have $%.2f remaining on your card - go to metroplus()" % remainder
 		metroplus()
 
-import math
+
+
+
+
+# Do the vars get passed from metrocard() to metroplus()?  YES
+#################### NEXT STEPS: (save each var as 2-decimal num)
+#	Do the math for floor & ceil:
+#	Create a list of 2.75 multiples (using recursive multiplication)
+#	Compare total to list for match (index-match?)
+#	If not found, subtract .05 from addl_amt, save as var_less and try until match found
+#	Now ADD .05 to addl_amt, save as var_more and try until match found
+#	Print original total w/remainder amt, and offer floor and ceil amts for zero remainder on card
+
 def metroplus():
+	print "Stop now"
+	print "Print single_fare:", single_fare		# CORRECT
+	print "Print bonus:", bonus					# CORRECT
+	print "Print total:", total					# CORRECT
+	print "Remainder is ", remainder
+"""
 	add_amt = float(addl)
-	while (remainder != 0) and (add_amt < 100):
-		print "New amount to add is %.2f" % add_amt
+#	while (remainder != 0) and (add_amt < 50):
+	while add_amt < 50:
+		print "New amount to add is %.2f" % add_amt	# CORRECT
 		print "Remainder is ", remainder
 		print "Print add_amt:", add_amt
 		add_amt = add_amt + .05
 
 		bonus = add_amt + (add_amt * .11)	# add'l amt including bonus
 		total = orig_amt + bonus	# orig amt + (add'l amt) + bonus
-#		remainder = total % single_fare
-		print "Print bonus:", bonus
-		print "Print total:", total
-#		print "Remainder is ", remainder
-	print "We're done here!"	
+		remainder = total % single_fare
 
+		print "Print single_fare:", single_fare		# CORRECT
+		print "Print bonus:", bonus					# CORRECT
+		print "Print total:", total					# CORRECT
+		print "Remainder is ", remainder
+
+	print "We're done here!"	
+"""
 
 #	START ABOVE
 #		Q: Why does remainder remain the same throughout?
