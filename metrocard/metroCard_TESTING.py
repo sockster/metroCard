@@ -44,7 +44,7 @@ def metrocard():
 
 
 
-# Do the vars get passed from metrocard() to metroplus()?  YES
+# Do the vars get passed from metrocard() to metroplus()?  	YES
 #################### NEXT STEPS: (save each var as 2-decimal num)
 #	Do the math for floor & ceil:
 #	Create a list of 2.75 multiples (using recursive multiplication)
@@ -53,12 +53,54 @@ def metrocard():
 #	Now ADD .05 to addl_amt, save as var_more and try until match found
 #	Print original total w/remainder amt, and offer floor and ceil amts for zero remainder on card
 
+
+
+
+
 def metroplus():
-	print "Stop now"
+	print "Stop now"							# Testing for metrocard-to-metroplus pass	CORRECT
 	print "Print single_fare:", single_fare		# CORRECT
 	print "Print bonus:", bonus					# CORRECT
 	print "Print total:", total					# CORRECT
 	print "Remainder is ", remainder
+
+	multis = []
+	x = 1.00
+	while x < 50:	# 50 for testing purposes
+		y = x * 2.75
+		multis.append(y)
+		x += 1
+	print multis
+	#metromatch()
+	
+	
+y = "{:.2f}".format(y)
+
+
+
+
+
+
+"""
+#	SAMPLE ... FOR POSSIBLE USE LATER
+import re
+def metromatch():
+	y = y
+	m = re.search(y, multis)
+	if m:
+		print ("search", m.group(1))
+"""	
+	
+
+
+
+
+
+
+
+
+
+
 """
 	add_amt = float(addl)
 #	while (remainder != 0) and (add_amt < 50):
@@ -80,11 +122,8 @@ def metroplus():
 	print "We're done here!"	
 """
 
-#	START ABOVE
-#		Q: Why does remainder remain the same throughout?
-#			w/o commented lines 49 & 52, Py insists remainder called before assigned
 
-#################### BEFORE WORKING, PUSH TO GITHUB - NO INTERNET CONNECT ON 08.23.15
+
 
 
 
@@ -113,8 +152,8 @@ def metroplus():
 # CLOSEST number BELOW num or expression divided by divisor
 # math.floor(a-number-or-expression)  -  in this case, looking for amt to add divided by 2.75
 
-import math
-def addl_value_choices():
+import math					# 	math MOD NEEDED?
+def addl_value_query():	#	IF TOTAL AMT IS DIVISIBLE BY 2.75
 	print cust_pref
 	pref_plus_bonus = cust_pref + (cust_pref * .11)
 	total_actual = pref_plus_bonus + card_value
@@ -124,6 +163,11 @@ def addl_value_choices():
 		print "Go ahead - the final total will give you exactly %d" % (total_actual / 2.75),
 		print "rides"
 	else:
+	
+	
+	
+	
+	
 #				
 		lower = total_actual - math.floor(total_actual / 2.75)
 		upper = total_actual + math.ceil(total_actual / 2.75)
