@@ -5,28 +5,29 @@
 
 
 
-
+#	> > > > > > 		SECTION a	assigning vars
 single_fare = 2.75
 orig = raw_input("how much on your current card?\n")
 addl = raw_input("how much do you want to add to card?\n")
-orig_amt = float(orig)	# $ on card now - amt only
-add_amt = float(addl)	# preferred $ to add - amt only
+orig_amt = float(orig)				# $ on card now - amt only
+add_amt = float(addl)				# preferred $ to add - amt only
+bonus_only = add_amt * .11
 bonus = add_amt + (add_amt * .11)	# add'l amt including bonus
-total = orig_amt + bonus	# orig amt + (add'l amt) + bonus
-rides = total / single_fare	#also use for start number in figuring best amt t/b added
+total = orig_amt + bonus			# orig amt + (add'l amt) + bonus
+rides = total / single_fare			#also use for start number in figuring best amt t/b added
 remainder = total % single_fare
 rides_remainder = int(100 * remainder)
 new_rides_remainder = int(100 * (add_amt % single_fare))
 
 
 
-#	> > > > > > 		SECTION 1	to "if" - Queries: current amt, addl to add, # rides, will there be remainder of $$$?
-#	> > > > > > 		SECTION 2	"else" - if remainder $$$, go to metroplus to figure out even amts to add for 0 remainder
 
 
+#	> > > > > > 		SECTION 1	Sum of: current amt, addl to add, and bonus (show # rides)
+#									if remainder, go to metroplus(),
+#									(for suggested amts to add for no remainder)
 
-
-#		DEF METROCARD() WORKS - WITH REMAINDER OR WITH EVEN # RIDES (wooHOOO!!!)
+#		
 def metrocard():
 	print orig
 	print addl
@@ -57,30 +58,29 @@ def metrocard():
 
 
 
+#	> > > > > > 		SECTION 2	"else" - if remainder $$$, figure out even amts to add for 0 remainder
+#									This is all correct, i.e., returns what's expected
 def metroplus():
-	print "Stop now"							# Testing for metrocard-to-metroplus pass	CORRECT
-	print "Print single_fare:", single_fare		# CORRECT
-	print "Print bonus:", bonus					# CORRECT
-	print "Print total:", total					# CORRECT
-	print "Remainder is ", remainder
-
+	print "Print single_fare:", single_fare								# CORRECT
+	print "Print 11% bonus amt:", "{:.2f}".format((round(bonus_only / .05) * .05))							
+	print "Print bonus:", "{:.2f}".format((round(bonus / .05) * .05))	# CORRECT (rndd to .05 at 2 decimals)
+	print "Print total:", "{:.2f}".format((round(total / .05) * .05))	# CORRECT       "
+	print "Remainder is ", "{:.2f}".format((round(remainder / .05) * .05))	# CORRECT	"
+	# Above is TESTING::c/b/dele
+	
+	# start w/empty list "multis"	
 	multis = []
 	x = 1.00
-	while x < 50:	# 50 for testing purposes
-		y = x * 2.75
+	while x < 50:	# 50 for testing purposes only
+		y = x * single_fare
 		multis.append(y)
 		x += 1
 	print multis
 	#metromatch()
 	
-	
-y = "{:.2f}".format(y)
 
 
-
-
-
-
+#	OK - CAN'T FIGURE OUT H/T GET TO 0 MANUALLY, LET'S TRY MATCH AND RECURSIVE GUESSING
 """
 #	SAMPLE ... FOR POSSIBLE USE LATER
 import re
@@ -214,7 +214,8 @@ def var_statemts():
 
 
 	
-metrocard()
+metrocard()	#what's on YOUR card?
+
 
 
 
