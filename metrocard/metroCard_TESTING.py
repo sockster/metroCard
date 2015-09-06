@@ -121,7 +121,8 @@ def chasing_dory():
 
 
 finding_nemo()
-
+# =========== >   MATH WORKING; NEXT UP: WHILE STATEMENT W/"and"
+#			(currently ignoring "and new_remainder != 0")
 
 
 
