@@ -30,33 +30,20 @@ new_rides_remainder = int(100 * (add_amt % single_fare))
 def metrocard():
 	print orig
 	print addl
-	print "your total - including original amount and 11 percent bonus will be %.2f" % total
+	print "your total - including original amount and 11 percent bonus - will be $%.2f" % total
 	print "you will have %i rides" % rides
 
 	if rides_remainder == 0:
 		print "this amount will leave you with $0 on your metrocard!"		# END OF SECTION 1
 	else:
-		print "but you will have $%.2f remaining on your card - go to metroplus()" % remainder
-		metroplus()
+		print "but you will have $%.2f remaining on your card - go to multis\n\n" % remainder
 
 
-
-
-#									Show all in rounded numbers to 2 decimals
-#									This is all correct, i.e., returns what's expected
-def metroplus():
-	print "Print single_fare:", single_fare								# CORRECT
-	print "Print 11% bonus amt:", "{:.2f}".format((round(bonus_only / .05) * .05))							
-	print "Print bonus:", "{:.2f}".format((round(bonus / .05) * .05))	# CORRECT (rndd to .05 at 2 decimals)
-	print "Print total:", "{:.2f}".format((round(total / .05) * .05))	# CORRECT       "
-	print "Remainder is ", "{:.2f}".format((round(remainder / .05) * .05))	# CORRECT	"
-	# Above is TESTING::c/b/dele
-
-
-
-
+"""
 #	> > > > > > 		SECTION 1a		BREAK from FORMULA; create list containing multiples of 2.75
 metrocard()
+
+
 #	show 50 multiples of 2.75	
 multis = []
 x = 1.00
@@ -65,45 +52,61 @@ while x < 50:	# 50 for testing purposes only
 	multis.append(y)
 	x += 1
 print multis
-print add_amt
+print ""
+print ""
+
+"""
+
 
 
 #	> > > > > > 		SECTION 2	BACK to FORMULA; BONUS AND TOTAL NOT WORKING ...
 #	 		find the closest 0-remainder total
 
 def finding_nemo():
-	print "Finding Nemo"
-	print add_amt
-	print "Nemo found!"	
+	print "Finding Nemo\n$", add_amt
+	print "Nemo found!\n"	
 	chasing_dory()
 
 
 
 def chasing_dory():
-	print "Chasing Dory"
-	print add_amt
+	print "Chasing Dory\n$", add_amt
 	#	re-calcs for pertinent vars
 	new_add = add_amt
 	new_remainder = total % 2.75
 	
-	while new_add < 20 and new_remainder != 0:
+	while new_add < 100 and new_remainder != 0:
 		new_add = new_add + .05
 		new_bonus_only = new_add * .11
 		new_bonus = new_add + new_bonus_only
 		new_total = orig_amt + new_bonus
 		new_rides = new_total / 2.75
 		new_remainder = round((new_total % 2.75) / .05) * .05
+		
+		# round as needed:
+		new_bonus_only = round(new_bonus_only / .05) * .05
+		new_bonus = round(new_bonus / .05) * .05
+		new_total = round(new_total / .05) * .05
+		new_rides = round(new_rides)
+		
+		
+		
+		
 
 		print "Print new_add", new_add
 		print "Print new_bonus_only", new_bonus_only
-		print "Rounded & divided  -->", round(new_bonus_only / .05) * .05
-		print "Print new_bonus - rounded", round(new_bonus / .05) * .05
-		print "Print new_total - rounded", round(new_total / .05) * .05
-		print "Print new_rides - rounded", round(new_rides / .05) * .05
-		print "Print new_remainder - rounded", round(new_remainder / .05) * .05
+
+		print "Print new_bonus", new_bonus
+		print "Print new_total", new_total
+		print "Print new_rides", new_rides
+		print "Print new_remainder", new_remainder
 		print ""
 		
-	print "Dory caught!"	
+	print "Dory caught!"
+	print "For a zero remainder, you should add $%s" % new_add
+	print "Which will give you a bonus of $%s" % new_bonus_only
+	print "And a MetroCard balance of $%s" % new_total
+	print "Which means you'll have %i rides with no remaining money on your card!" % new_rides
 
 """	while add_amt < 50:
 		print "New amount to add is %.2f" % add_amt	# CORRECT
@@ -121,8 +124,14 @@ def chasing_dory():
 
 
 finding_nemo()
-# =========== >   MATH WORKING; NEXT UP: WHILE STATEMENT W/"and"
-#			(currently ignoring "and new_remainder != 0")
+
+Print "IT. COULD. WORK!!!"
+
+#	NEXT STEPS:
+#		put all the pertinent parts into the original file, which has
+#		the the opening frills, and 
+#		the if statement to determine whether original amounts would result in zero remainder
+#		THEN, hook it into a front-end interface
 
 
 
