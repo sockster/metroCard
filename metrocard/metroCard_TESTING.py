@@ -1,11 +1,5 @@
 
 
-
-# 09.11.15
-#	remove all rounding until the final accounting
-#	but wait - how will calcs know to stop if they don't exactly == 0? (ex.: 0.000523)
-#	Maybe keep new_remainder rounded, but let everything else remain "natural"
-
 #	NOTE: comment on WHY something is, not what it is
 #		ex: x = 5   doesn't need # var x = 5   (duh)
 #					but ok to comment x = velocity
@@ -93,37 +87,33 @@ def chasing_dory():
 	new_total = orig_amt + new_bonus
 	new_rides = new_total / 2.75
 	new_remainder = new_total % 2.75
-
+	intNew_rides = int(new_rides)
 	
-#	while new_add < 40 and (new_remainder != 2.75 or round(new_remainder) != 0):
-#	ACKK!!! SO CLOSE! coffee haus closing for night
-#		need to show 2-decimal rounding for new_rides
-	while (new_rides / int(new_rides) != 1.0) and new_add < 27.00:
+
+	while new_rides != intNew_rides and (new_add < 27.00):	# "27.00" for testing only
 		# (new_remainder != 0 or new_remainder != 2.75)
 		new_add = new_add + .05
 		new_bonus_only = round(new_add * .11 / .05) * .05
-		# new_bonus_only = (new_add * .11)
 		new_bonus_only = round(new_bonus_only,2)
 		new_bonus = new_add + new_bonus_only
 		new_total = orig_amt + new_bonus
-		new_rides = new_total / 2.75
+		new_rides = round(new_total,2) / 2.75
 		new_remainder = new_total % 2.75
+		intNew_rides = int(new_rides)
 
 		
 		
-		
-
+				
+		# = = = = = = = =>  PRINT SECTION
 		print "Print new_add", new_add
 		print "Print new_bonus_only", new_bonus_only
 
 		print "Print new_bonus", new_bonus
 		print "Print new_total", new_total
-		print "Print new_rides", new_rides
 		print "Print formatted new_rides: %.2f" % new_rides
 		print "Print new_rides", new_rides
-		print "Print new_rides / int(new_rides)", new_rides / int(new_rides)
-		print "new_rides / 1", new_rides / 1
 		print ""
+		# = = = = = = = =>  PRINT SECTION END
 		
 	print "Dory caught!"
 	print "For a zero remainder, you should add $%s" % new_add
@@ -131,19 +121,6 @@ def chasing_dory():
 	print "And a MetroCard balance of $%s" % new_total
 	print "Which means you'll have %i rides with no remaining money on your card!" % new_rides
 
-"""	while add_amt < 50:
-		print "New amount to add is %.2f" % add_amt	# CORRECT
-		print "Remainder is ", remainder
-		print "Print add_amt:", add_amt
-		print "Print single_fare:", single_fare		# CORRECT
-		print "Print bonus_only", bonus_only 
-		print "Print bonus:", bonus					# CORRECT
-		print "Print total:", total					# CORRECT
-		print "Remainder is ", remainder
-		print ""
-		print ""
-		add_amt = add_amt + .05
-"""
 
 
 finding_nemo()
@@ -151,8 +128,10 @@ finding_nemo()
 
 
 #	NEXT STEPS:
+
+#		format print section to return to 2 decimals
 #		put all the pertinent parts into the original file, which has
-#		the the opening frills, and 
+#		the opening frills, and 
 #		the if statement to determine whether original amounts would result in zero remainder
 #		THEN, hook it into a front-end interface
 
