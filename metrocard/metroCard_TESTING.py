@@ -1,7 +1,19 @@
 
 
 
-#		RUN FILE - .05 is adding to amt, but REMAINDER is showing 0.803 
+# 09.11.15
+#	remove all rounding until the final accounting
+#	but wait - how will calcs know to stop if they don't exactly == 0? (ex.: 0.000523)
+#	Maybe keep new_remainder rounded, but let everything else remain "natural"
+
+#	NOTE: comment on WHY something is, not what it is
+#		ex: x = 5   doesn't need # var x = 5   (duh)
+#					but ok to comment x = velocity
+
+
+
+
+
 
 
 
@@ -73,27 +85,30 @@ def chasing_dory():
 	print "Chasing Dory\n$", add_amt
 	#	re-calcs for pertinent vars
 	new_add = add_amt
-	new_remainder = total % 2.75
-	new_remainder = round(new_remainder / .05) * .05
-	print new_remainder
+	new_add = new_add + .05
+	new_bonus_only = round(new_add * .11 / .05) * .05
+	# new_bonus_only = (new_add * .11)
+	new_bonus_only = round(new_bonus_only,2)
+	new_bonus = new_add + new_bonus_only
+	new_total = orig_amt + new_bonus
+	new_rides = new_total / 2.75
+	new_remainder = new_total % 2.75
+
 	
 #	while new_add < 40 and (new_remainder != 2.75 or round(new_remainder) != 0):
-
-	while round(new_remainder) != 2.75 or round(new_remainder) != 0:
+#	ACKK!!! SO CLOSE! coffee haus closing for night
+#		need to show 2-decimal rounding for new_rides
+	while (new_rides / int(new_rides) != 1.0) and new_add < 27.00:
 		# (new_remainder != 0 or new_remainder != 2.75)
 		new_add = new_add + .05
-		new_bonus_only = new_add * .11
+		new_bonus_only = round(new_add * .11 / .05) * .05
+		# new_bonus_only = (new_add * .11)
+		new_bonus_only = round(new_bonus_only,2)
 		new_bonus = new_add + new_bonus_only
 		new_total = orig_amt + new_bonus
 		new_rides = new_total / 2.75
 		new_remainder = new_total % 2.75
-		
-		# round as needed:
-		new_bonus_only = round(new_bonus_only / .05) * .05
-		new_bonus = round(new_bonus / .05) * .05
-		new_total = round(new_total / .05) * .05
-		new_rides = round(new_rides)
-		new_remainder = round(new_remainder / .05) * .05
+
 		
 		
 		
@@ -104,7 +119,10 @@ def chasing_dory():
 		print "Print new_bonus", new_bonus
 		print "Print new_total", new_total
 		print "Print new_rides", new_rides
-		print "Print new_remainder", new_remainder
+		print "Print formatted new_rides: %.2f" % new_rides
+		print "Print new_rides", new_rides
+		print "Print new_rides / int(new_rides)", new_rides / int(new_rides)
+		print "new_rides / 1", new_rides / 1
 		print ""
 		
 	print "Dory caught!"
@@ -130,11 +148,7 @@ def chasing_dory():
 
 finding_nemo()
 
-# DIDN'T PASS ALL TESTS (worked with $23 + $24, but not $.80 + $7.75)
-# FIDDLED WITH IT
-# SHOULDA' SPENT THE TIME GOBBLING IQ PILLS
-# MAYBE I'M WASTING MY TIME
-# SURRENDER DOROTHY!
+
 
 #	NEXT STEPS:
 #		put all the pertinent parts into the original file, which has
